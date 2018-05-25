@@ -7,7 +7,7 @@ namespace NoSeagulls
 {
     public class PatchSeagulls
     {
-        private static RedirectCallsState state1, state2, state3, state4, state5;
+        private static RedirectCallsState state1, state2, state3, state4, state5, state6, state7;
         private static bool deployed = false;
 
         public static void Deploy()
@@ -22,6 +22,8 @@ namespace NoSeagulls
                     state3 = RedirectionHelper.RedirectCalls(typeof(HarborAI).GetMethod("CountAnimals", BindingFlags.Instance | BindingFlags.NonPublic), patch);
                     state4 = RedirectionHelper.RedirectCalls(typeof(CargoHarborAI).GetMethod("CountAnimals", BindingFlags.Instance | BindingFlags.NonPublic), patch);
                     state5 = RedirectionHelper.RedirectCalls(typeof(ParkAI).GetMethod("TargetAnimals", BindingFlags.Instance | BindingFlags.NonPublic), patch);
+                    state6 = RedirectionHelper.RedirectCalls(typeof(ParkBuildingAI).GetMethod("CountAnimals", BindingFlags.Instance | BindingFlags.NonPublic), patch);
+                    state7 = RedirectionHelper.RedirectCalls(typeof(ParkBuildingAI).GetMethod("TargetAnimals", BindingFlags.Instance | BindingFlags.NonPublic), patch);
                     deployed = true;
                 }
                 catch (Exception e)
@@ -43,6 +45,8 @@ namespace NoSeagulls
                     RedirectionHelper.RevertRedirect(typeof(LandfillSiteAI).GetMethod("CountAnimals", BindingFlags.Instance | BindingFlags.NonPublic), state2);
                     RedirectionHelper.RevertRedirect(typeof(HarborAI).GetMethod("CountAnimals", BindingFlags.Instance | BindingFlags.NonPublic), state3);
                     RedirectionHelper.RevertRedirect(typeof(CargoHarborAI).GetMethod("CountAnimals", BindingFlags.Instance | BindingFlags.NonPublic), state4);
+                    RedirectionHelper.RevertRedirect(typeof(ParkBuildingAI).GetMethod("TargetAnimals", BindingFlags.Instance | BindingFlags.NonPublic), state7);
+                    RedirectionHelper.RevertRedirect(typeof(ParkBuildingAI).GetMethod("CountAnimals", BindingFlags.Instance | BindingFlags.NonPublic), state6);
                     deployed = false;
                 }
                 catch (Exception e)

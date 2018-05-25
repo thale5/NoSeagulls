@@ -14,7 +14,7 @@ namespace NoSeagulls
 
         public string Description
         {
-            get { return "Removes seagulls from your city and prevents new ones from spawning"; }
+            get { return "Removes seagulls from your city"; }
         }
     }
 }
