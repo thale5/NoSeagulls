@@ -7,7 +7,7 @@ namespace NoSeagulls
 {
     public class PatchSeagulls
     {
-        private static RedirectCallsState state1, state2, state3, state4, state5, state6, state7;
+        private static RedirectCallsState state1, state2, state3, state4, state5, state6, state7, state8;
         private static bool deployed = false;
 
         public static void Deploy()
@@ -24,6 +24,7 @@ namespace NoSeagulls
                     state5 = RedirectionHelper.RedirectCalls(typeof(ParkAI).GetMethod("TargetAnimals", BindingFlags.Instance | BindingFlags.NonPublic), patch);
                     state6 = RedirectionHelper.RedirectCalls(typeof(ParkBuildingAI).GetMethod("CountAnimals", BindingFlags.Instance | BindingFlags.NonPublic), patch);
                     state7 = RedirectionHelper.RedirectCalls(typeof(ParkBuildingAI).GetMethod("TargetAnimals", BindingFlags.Instance | BindingFlags.NonPublic), patch);
+                    state8 = RedirectionHelper.RedirectCalls(typeof(IndustryBuildingAI).GetMethod("CountAnimals", BindingFlags.Instance | BindingFlags.NonPublic), patch);
                     deployed = true;
                 }
                 catch (Exception e)
@@ -47,6 +48,7 @@ namespace NoSeagulls
                     RedirectionHelper.RevertRedirect(typeof(CargoHarborAI).GetMethod("CountAnimals", BindingFlags.Instance | BindingFlags.NonPublic), state4);
                     RedirectionHelper.RevertRedirect(typeof(ParkBuildingAI).GetMethod("TargetAnimals", BindingFlags.Instance | BindingFlags.NonPublic), state7);
                     RedirectionHelper.RevertRedirect(typeof(ParkBuildingAI).GetMethod("CountAnimals", BindingFlags.Instance | BindingFlags.NonPublic), state6);
+                    RedirectionHelper.RevertRedirect(typeof(IndustryBuildingAI).GetMethod("CountAnimals", BindingFlags.Instance | BindingFlags.NonPublic), state8);
                     deployed = false;
                 }
                 catch (Exception e)
