@@ -4,17 +4,7 @@ namespace NoSeagulls
 {
     public class Mod : IUserMod
     {
-        public string Name
-        {
-            get
-            {
-                return "No Seagulls";
-            }
-        }
-
-        public string Description
-        {
-            get { return "Removes seagulls from your city"; }
-        }
+        public string Name => "No Seagulls";
+        public string Description => "No seagulls in your city";
     }
 }
