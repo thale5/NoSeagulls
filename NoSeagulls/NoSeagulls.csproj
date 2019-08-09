@@ -53,7 +53,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RedirectionHelper.cs" />
     <Compile Include="Loading.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="PatchSeagulls.cs" />
